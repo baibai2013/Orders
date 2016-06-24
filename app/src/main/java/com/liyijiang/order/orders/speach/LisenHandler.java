@@ -6,7 +6,24 @@ package com.liyijiang.order.orders.speach;
 public class LisenHandler extends Thread{
 
 
+    private SpeachData speachData;
+
+    public LisenHandler(SpeachData speachData) {
+        this.speachData = speachData;
+    }
+
+    @Override
+    public void run() {
+
+        while (Speach.getInstance().isrun()){
 
 
 
+
+
+
+
+        }
+
+    }
 }
