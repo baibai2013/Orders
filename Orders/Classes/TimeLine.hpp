@@ -15,15 +15,20 @@ class CC_DLL TimeLine : public cocos2d::LayerColor
 {
 public:
     static TimeLine * create(const Color4B& color, GLfloat width, GLfloat height);
-    void updateView();
-CC_CONSTRUCTOR_ACCESS:
+    virtual void draw(Renderer *renderer, const Mat4 &transform, uint32_t flags) override;
     TimeLine();
     virtual ~TimeLine();
-    bool initWithColor(const Color4B& color, GLfloat width, GLfloat height);
-    
 protected:
-    DrawNode* drawNode;
+     void onDraw(const Mat4& transform, uint32_t flags);
     
+CC_CONSTRUCTOR_ACCESS:
+    bool initWithColor(const Color4B& color, GLfloat width, GLfloat height);
+   
+protected:
+   
+
+    DrawNode* drawNode;
+    CustomCommand _customCommand;
 public:
     const float cxl_heigh_scale = 0.4;
     

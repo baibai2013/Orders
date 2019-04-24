@@ -53,9 +53,9 @@ bool HelloWorld::init()
     auto visibleSize = Director::getInstance()->getVisibleSize();
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
+    //http://data.gtimg.cn/flashdata/hushen/minute/sz000001.js?maxage=110&0.28163905744440854
     auto timeLine = TimeLine::create(Color4B::BLACK, visibleSize.width, visibleSize.height);
     addChild(timeLine);
-    timeLine->updateView();
    
     return true;
 }

@@ -71,7 +71,16 @@ bool TimeLine::initWithColor(const Color4B &color, GLfloat width, GLfloat height
     return true;
 }
 
-void TimeLine::updateView(){
+
+void TimeLine::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
+{
+    _customCommand.init(_globalZOrder, transform, flags);
+    _customCommand.func = CC_CALLBACK_0(TimeLine::onDraw, this, transform, flags);
+    renderer->addCommand(&_customCommand);
+}
+
+void TimeLine::onDraw(const Mat4& transform, uint32_t /*flags*/)
+{
     drawNode->clear();
     
     auto size = getContentSize();
@@ -84,7 +93,7 @@ void TimeLine::updateView(){
     auto timeLineHeight = size.height - cjlHeight;
     
     auto oneTimeLineHeight = timeLineHeight / 5;
-     //绘制背景表格
+    //绘制背景表格
     {
         //横线
         for(int i=0;i<5;i++){
