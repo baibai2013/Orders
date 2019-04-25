@@ -7,8 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A4C4465226F04DE00C86595 /* TimeLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C4463226F04DE00C86595 /* TimeLine.cpp */; };
-		0A4C4466226F04DE00C86595 /* TimeLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C4463226F04DE00C86595 /* TimeLine.cpp */; };
+		0A4C4486227151E800C86595 /* TimeLineModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C4485227151E800C86595 /* TimeLineModel.cpp */; };
+		0A4C4487227151E800C86595 /* TimeLineModel.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C4485227151E800C86595 /* TimeLineModel.cpp */; };
+		0A4C448D22715DF500C86595 /* TimeLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C448B22715DF500C86595 /* TimeLine.cpp */; };
+		0A4C448E22715DF500C86595 /* TimeLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C448B22715DF500C86595 /* TimeLine.cpp */; };
+		0A4C44AC22715FA600C86595 /* SwallowLeeThree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C44AB22715FA600C86595 /* SwallowLeeThree.cpp */; };
+		0A4C44AD22715FA600C86595 /* SwallowLeeThree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0A4C44AB22715FA600C86595 /* SwallowLeeThree.cpp */; };
+		0AD52E372271AD7000267542 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AD52E352271AD7000267542 /* Utils.cpp */; };
+		0AD52E382271AD7000267542 /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0AD52E352271AD7000267542 /* Utils.cpp */; };
 		1A88B2641FC3D9C9005C14AE /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1A88B2631FC3D9C9005C14AE /* Images.xcassets */; };
 		1AC6FB21180E996B004C840B /* libcocos2d Mac.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FAF9180E9839004C840B /* libcocos2d Mac.a */; };
 		1AC6FB30180E99EB004C840B /* libcocos2d iOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1AC6FB07180E9839004C840B /* libcocos2d iOS.a */; };
@@ -98,8 +104,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0A4C4463226F04DE00C86595 /* TimeLine.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TimeLine.cpp; sourceTree = "<group>"; };
-		0A4C4464226F04DE00C86595 /* TimeLine.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TimeLine.hpp; sourceTree = "<group>"; };
+		0A4C4484227151E800C86595 /* TimeLineModel.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TimeLineModel.hpp; sourceTree = "<group>"; };
+		0A4C4485227151E800C86595 /* TimeLineModel.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeLineModel.cpp; sourceTree = "<group>"; };
+		0A4C448B22715DF500C86595 /* TimeLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TimeLine.cpp; sourceTree = "<group>"; };
+		0A4C448C22715DF500C86595 /* TimeLine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TimeLine.hpp; sourceTree = "<group>"; };
+		0A4C44AA22715FA600C86595 /* SwallowLeeThree.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SwallowLeeThree.hpp; sourceTree = "<group>"; };
+		0A4C44AB22715FA600C86595 /* SwallowLeeThree.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SwallowLeeThree.cpp; sourceTree = "<group>"; };
+		0AD52E3422718F1400267542 /* csv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = csv.h; sourceTree = "<group>"; };
+		0AD52E352271AD7000267542 /* Utils.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Utils.cpp; sourceTree = "<group>"; };
+		0AD52E362271AD7000267542 /* Utils.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Utils.hpp; sourceTree = "<group>"; };
 		1A88B2631FC3D9C9005C14AE /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		1AC6FAE5180E9839004C840B /* cocos2d_libs.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = cocos2d_libs.xcodeproj; path = ../cocos2d/build/cocos2d_libs.xcodeproj; sourceTree = "<group>"; };
 		1ACB3243164770DE00914215 /* libcurl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcurl.a; path = ../../cocos2dx/platform/third_party/ios/libraries/libcurl.a; sourceTree = "<group>"; };
@@ -192,6 +205,43 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A4C4483227151E800C86595 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C4484227151E800C86595 /* TimeLineModel.hpp */,
+				0A4C4485227151E800C86595 /* TimeLineModel.cpp */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		0A4C448A22715DF500C86595 /* chart */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C448B22715DF500C86595 /* TimeLine.cpp */,
+				0A4C448C22715DF500C86595 /* TimeLine.hpp */,
+			);
+			path = chart;
+			sourceTree = "<group>";
+		};
+		0A4C44A922715FA600C86595 /* three */ = {
+			isa = PBXGroup;
+			children = (
+				0A4C44AA22715FA600C86595 /* SwallowLeeThree.hpp */,
+				0A4C44AB22715FA600C86595 /* SwallowLeeThree.cpp */,
+				0AD52E352271AD7000267542 /* Utils.cpp */,
+				0AD52E362271AD7000267542 /* Utils.hpp */,
+			);
+			path = three;
+			sourceTree = "<group>";
+		};
+		0AD52E3322718F1400267542 /* lib */ = {
+			isa = PBXGroup;
+			children = (
+				0AD52E3422718F1400267542 /* csv.h */,
+			);
+			path = lib;
+			sourceTree = "<group>";
+		};
 		19C28FACFE9D520D11CA2CBB /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,12 +335,14 @@
 		46880B8319C43A87006E1F66 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				0AD52E3322718F1400267542 /* lib */,
+				0A4C44A922715FA600C86595 /* three */,
+				0A4C448A22715DF500C86595 /* chart */,
+				0A4C4483227151E800C86595 /* model */,
 				46880B8419C43A87006E1F66 /* AppDelegate.cpp */,
 				46880B8519C43A87006E1F66 /* AppDelegate.h */,
 				46880B8619C43A87006E1F66 /* HelloWorldScene.cpp */,
 				46880B8719C43A87006E1F66 /* HelloWorldScene.h */,
-				0A4C4463226F04DE00C86595 /* TimeLine.cpp */,
-				0A4C4464226F04DE00C86595 /* TimeLine.hpp */,
 			);
 			name = Classes;
 			path = ../Classes;
@@ -454,11 +506,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A4C4465226F04DE00C86595 /* TimeLine.cpp in Sources */,
 				1AF87B781F6F77F7007BE51C /* AppController.mm in Sources */,
+				0A4C4486227151E800C86595 /* TimeLineModel.cpp in Sources */,
 				1AF87B8B1F6F782A007BE51C /* RootViewController.mm in Sources */,
+				0A4C44AC22715FA600C86595 /* SwallowLeeThree.cpp in Sources */,
+				0AD52E372271AD7000267542 /* Utils.cpp in Sources */,
 				46880B8819C43A87006E1F66 /* AppDelegate.cpp in Sources */,
 				1AF87B8A1F6F7822007BE51C /* main.m in Sources */,
+				0A4C448D22715DF500C86595 /* TimeLine.cpp in Sources */,
 				46880B8A19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -467,8 +522,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A4C4466226F04DE00C86595 /* TimeLine.cpp in Sources */,
+				0A4C448E22715DF500C86595 /* TimeLine.cpp in Sources */,
 				46880B8919C43A87006E1F66 /* AppDelegate.cpp in Sources */,
+				0AD52E382271AD7000267542 /* Utils.cpp in Sources */,
+				0A4C4487227151E800C86595 /* TimeLineModel.cpp in Sources */,
+				0A4C44AD22715FA600C86595 /* SwallowLeeThree.cpp in Sources */,
 				503AE10517EB98FF00D1A890 /* main.cpp in Sources */,
 				46880B8B19C43A87006E1F66 /* HelloWorldScene.cpp in Sources */,
 			);

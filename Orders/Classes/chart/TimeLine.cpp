@@ -107,6 +107,7 @@ void TimeLine::onDraw(const Mat4& transform, uint32_t /*flags*/)
     
     
     {
+        //前一个交易日的收盘价 虚线
         
     }
    

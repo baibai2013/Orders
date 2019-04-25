@@ -24,7 +24,9 @@
 
 #include "HelloWorldScene.h"
 #include "SimpleAudioEngine.h"
-#include "TimeLine.hpp"
+#include "chart/TimeLine.hpp"
+#include "model/TimeLineModel.hpp"
+#include "three/SwallowLeeThree.hpp"
 
 USING_NS_CC;
 
@@ -54,9 +56,15 @@ bool HelloWorld::init()
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
     
     //http://data.gtimg.cn/flashdata/hushen/minute/sz000001.js?maxage=110&0.28163905744440854
+    
+     TimeLineModel* mData = SwallowLeeThree::getTimeLineData("20190425");
+    
     auto timeLine = TimeLine::create(Color4B::BLACK, visibleSize.width, visibleSize.height);
     addChild(timeLine);
-   
+    timeLine->setMdata(mData);
+    
+    
+    
     return true;
 }
 
