@@ -81,6 +81,8 @@ void TimeLine::draw(Renderer *renderer, const Mat4 &transform, uint32_t flags)
 
 void TimeLine::onDraw(const Mat4& transform, uint32_t /*flags*/)
 {
+    if(redraw) return;
+    
     drawNode->clear();
     
     auto size = getContentSize();
@@ -107,9 +109,32 @@ void TimeLine::onDraw(const Mat4& transform, uint32_t /*flags*/)
     
     
     {
-        //前一个交易日的收盘价 虚线
+        //坐标
+        float stepYAlxis = (mData->todayMaxPrice-mData->yesterdayEndPrice) / 2;
+        char s[20];
+        for(int i=0;i<5;i++){
+          
+            float value = mData->todayMaxPrice - stepYAlxis * i;
+            float percent = value  / mData->yesterdayEndPrice;
+            
+            //左边y轴
+            sprintf(s, "%.2f",value);
+            auto label =  Label::createWithSystemFont(std::string(s), "Avenir Next", 16,Size(padingLeft, 32), TextHAlignment::CENTER);
+            addChild(label);
+            label->setPosition(Vec2(padingLeft/2, size.height - (padingTop + oneTimeLineHeight * i)));
+            
+            
+            //右边y轴
+            sprintf(s, "%.2f",percent);
+            label =  Label::createWithSystemFont(std::string(s), "Avenir Next", 16,Size(padingLeft, 32), TextHAlignment::CENTER);
+            addChild(label);
+            label->setPosition(Vec2(size.width-padingRight, size.height - (padingTop + oneTimeLineHeight * i)));
+        }
         
     }
+    
+    
+    redraw = true;
    
 }
 

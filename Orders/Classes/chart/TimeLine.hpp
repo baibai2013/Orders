@@ -31,6 +31,7 @@ protected:
 public:
     const float cxl_heigh_scale = 0.4;
     CC_SYNTHESIZE(TimeLineModel*,mData,Mdata);
+    CC_SYNTHESIZE(bool,redraw,MRedraw);
 };
 NS_CC_END
 #endif /* TimeLine_hpp */
