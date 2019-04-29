@@ -80,3 +80,10 @@ time_t Utils::stringToTime(std::string format,std::string str){
     time_t _time_t = mktime(&_tm);
     return _time_t;
 }
+
+
+int Utils::stringToMinute(std::string format,std::string str){
+    int  hour=0, minute=0;
+    sscanf(str.c_str(), format.c_str(), &hour,&minute);
+    return hour*60+minute;
+}

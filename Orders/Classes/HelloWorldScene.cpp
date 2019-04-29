@@ -60,11 +60,8 @@ bool HelloWorld::init()
      TimeLineModel* mData = SwallowLeeThree::getTimeLineData("20190425");
     
     auto timeLine = TimeLine::create(Color4B::BLACK, visibleSize.width, visibleSize.height);
-    addChild(timeLine);
     timeLine->setMdata(mData);
-    
-    
-    
+    addChild(timeLine);
     return true;
 }
 

@@ -15,5 +15,6 @@ public:
     static std::string yesterdayString(std::string today);
     static std::string timeToString(std::string format,time_t time);
     static time_t stringToTime(std::string format,std::string str);
+    static int stringToMinute(std::string format,std::string str);
 };
 #endif /* Utils_hpp */
