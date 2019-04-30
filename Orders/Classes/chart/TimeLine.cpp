@@ -51,7 +51,7 @@ bool TimeLine::initWithColor(const Color4B &color, GLfloat width, GLfloat height
     cjlHeight = pureHeight * cxl_heigh_scale;
     //时分图高
     timeLineHeight = pureHeight - cjlHeight;
-    
+    //时分图宽
     timeLineWidth = size.width-padingRight-padingLeft;
    
     

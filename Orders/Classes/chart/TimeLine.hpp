@@ -3,7 +3,7 @@
 //  Orders
 //
 //  Created by li on 2019/4/23.
-//
+//分时图
 
 #ifndef TimeLine_hpp
 #define TimeLine_hpp
@@ -21,7 +21,25 @@ public:
     virtual ~TimeLine();
 protected:
     void onDraw(const Mat4& transform, uint32_t flags);
+    
+    
+    /**
+     时分值转换为坐标
+
+     @param time 时间
+     @param value 单价
+     @return 坐标
+     */
     Vec2 timeMapToPos(std::string time,float value);
+    
+    
+    /**
+     成交量转换为坐标
+
+     @param time 时间
+     @param value 成交量
+     @return 坐标
+     */
     Vec2 cjlMapToPos(std::string time,float value);
     
     void initDraw();
