@@ -31,6 +31,7 @@ TimeLineModel* SwallowLeeThree::getTimeLineData(std::string todayTime){
     timeLineModel->todayStartPrice = actualPrice;
     timeLineModel->todayMaxPrice = actualPrice;
     timeLineModel->todayMinPrice = actualPrice;
+    timeLineModel->todayMaxVolume = volume;
     
     auto timeLinePoint = new TimeLinePoint(time,actualPrice,0.0f,volume);
     totalPrice += (actualPrice*volume);
@@ -38,6 +39,7 @@ TimeLineModel* SwallowLeeThree::getTimeLineData(std::string todayTime){
     timeLinePoint->averagePrice = totalPrice / totalVolume;
     timeLineModel->todayMaxPrice = std::max(timeLineModel->todayMaxPrice, actualPrice);
     timeLineModel->todayMinPrice = std::min(timeLineModel->todayMinPrice, actualPrice);
+    timeLineModel->todayMaxVolume = std::max(timeLineModel->todayMaxVolume, volume);
     timeLineModel->mData.push_back(timeLinePoint);
     
     while (in.read_row(time,actualPrice,volume)) {
@@ -48,6 +50,7 @@ TimeLineModel* SwallowLeeThree::getTimeLineData(std::string todayTime){
         timeLinePoint->averagePrice = totalPrice / totalVolume;
         timeLineModel->todayMaxPrice = std::max(timeLineModel->todayMaxPrice, actualPrice);
         timeLineModel->todayMinPrice = std::min(timeLineModel->todayMinPrice, actualPrice);
+        timeLineModel->todayMaxVolume = std::max(timeLineModel->todayMaxVolume, volume);
         timeLineModel->mData.push_back(timeLinePoint);
     }
     

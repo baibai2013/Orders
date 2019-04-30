@@ -40,40 +40,20 @@ bool TimeLine::initWithColor(const Color4B &color, GLfloat width, GLfloat height
         return false;
     }
     
-    auto size = Director::getInstance()->getVisibleSize();
+    auto size = Size(width,height);
     Vec2 origin = Director::getInstance()->getVisibleOrigin();
    
     drawNode = DrawNode::create();
     addChild(drawNode);
     
     //成交量图高
-    cjlHeight = (size.height - (padingTop+padingBottom) * 2) * cxl_heigh_scale;
+    float pureHeight = size.height - (padingTop+padingBottom) * 2;
+    cjlHeight = pureHeight * cxl_heigh_scale;
     //时分图高
-    timeLineHeight = size.height - cjlHeight;
+    timeLineHeight = pureHeight - cjlHeight;
     
     timeLineWidth = size.width-padingRight-padingLeft;
-    //draw a solid rectangle
-//    draw->drawSolidRect(Vec2(10,10), Vec2(200,200), Color4F(1,1,0,1));
-    
-    // Draw polygons
-//    Vec2 points[] = { Vec2(s.height/4,0), Vec2(s.width,s.height/5), Vec2(s.width/3*2,s.height) };
-//    draw->drawPolygon(points, sizeof(points)/sizeof(points[0]), Color4F(1,0,0,0.5), 4, Color4F(0,0,1,0.5));
-    // star poly (triggers buggs)
-//    {
-//        const float o=80;
-//        const float w=20;
-//        const float h=50;
-//        Vec2 star[] = {
-//            Vec2(o+w,o-h), Vec2(o+w*2, o),                        // lower spike
-//            Vec2(o + w*2 + h, o+w ), Vec2(o + w*2, o+w*2),        // right spike
-//                          {o +w, o+w*2+h}, {o,o+w*2},                 // top spike
-//                          {o -h, o+w}, {o,o},                         // left spike
-//        };
-//
-//        draw->drawPolygon(star, sizeof(star)/sizeof(star[0]), Color4F(1,0,0,0.5), 1, Color4F(0,0,1,1));
-//    }
-    
-  
+   
     
     
     return true;
@@ -98,6 +78,14 @@ Vec2 TimeLine::timeMapToPos(std::string time,float value)
     return Vec2(timeLineStep.x * numberX,timeLineStep.y * numberY) + timeLineStartPos;
 }
 
+Vec2 TimeLine::cjlMapToPos(std::string time,float value)
+{
+    
+    int numberX = Utils::stringToMinute("%2d%2d",time)-Utils::stringToMinute("%2d%2d", "0930");
+    float numberY = value;
+    return Vec2(cjlStep.x * numberX,cjlStep.y * numberY) +cjlStartPos;
+}
+
 void TimeLine::initDraw()
 {
 //    Vec2 cjlStartPos;
@@ -120,6 +108,14 @@ void TimeLine::initDraw()
     float timeLineStepY = timeLineHeight /((timeLineMaxValue - timeLineMinValue) * 100);
     timeLineStep.set(timeLineStepX, timeLineStepY);
     
+    
+    ///
+    
+    cjlStartPos.set(padingLeft,padingBottom);
+    
+    float cjlStepY = cjlHeight/mData->todayMaxVolume ;
+    float cjlStepX = timeLineStepX;
+    cjlStep.set(cjlStepX,cjlStepY);
     
 }
 
@@ -174,6 +170,28 @@ void TimeLine::onDraw(const Mat4& transform, uint32_t /*flags*/)
             addChild(label);
             label->setPosition(Vec2(timeLineStartPos.x + stepXAxis * i, timeLineStartPos.y - padingTop));
         }
+        
+        
+        //成交量图表
+        drawNode->drawRect(cjlStartPos, cjlMapToPos("1500", mData->todayMaxVolume), Color4F::GRAY);
+        
+        //左边
+        for(int i=0; i<2;i++){
+            sprintf(s,"%.f",i*mData->todayMaxVolume);
+            auto label =  Label::createWithSystemFont(s, "Avenir Next", 16,Size(padingLeft, 32), TextHAlignment::CENTER);
+            addChild(label);
+            label->setPosition(Vec2(cjlStartPos.x - padingLeft / 2 , cjlStartPos.y + cjlStep.y * i * mData->todayMaxVolume));
+        }
+        
+        //右边
+        for(int i=0; i<2;i++){
+            sprintf(s,"%.f",i*mData->todayMaxVolume);
+            auto label =  Label::createWithSystemFont(s, "Avenir Next", 16,Size(padingLeft, 32), TextHAlignment::CENTER);
+            addChild(label);
+            label->setPosition(cjlMapToPos("1500", i* mData->todayMaxVolume)+ Vec2(padingRight / 2, 0));
+        }
+        
+        
     }
     
     {
@@ -181,21 +199,28 @@ void TimeLine::onDraw(const Mat4& transform, uint32_t /*flags*/)
         int size = mData->mData.size();
         auto actualPriceLine = PointArray::create(size);
         auto averagePriceLine = PointArray::create(size);
-       
+        auto volumeLine = PointArray::create(size);
+        
         for(int i=0;i<size;i++){
             TimeLinePoint* timeLinePoint = mData->mData[i];
             Vec2 pointActualPrice = timeMapToPos(timeLinePoint->time,timeLinePoint->actualPrice);
             Vec2 pointAveragePrice = timeMapToPos(timeLinePoint->time,timeLinePoint->averagePrice);
             actualPriceLine->addControlPoint(pointActualPrice);
             averagePriceLine->addControlPoint(pointAveragePrice);
+            Vec2 volume = cjlMapToPos(timeLinePoint->time, timeLinePoint->volume);
+            volumeLine->addControlPoint(volume);
         }
       
+        
         if(actualPriceLine->count() > 0)
             drawNode->drawCardinalSpline(actualPriceLine,0.5f,50,Color4F(0.0f,0.0f,1.0f,1.0f));
         if(averagePriceLine->count() > 0)
             drawNode->drawCardinalSpline(averagePriceLine,0.5f,50,Color4F(1.0f,0.0f,0.0f,1.0f));
-       
         
+        
+        for(int i=0;i<volumeLine->count();i++){
+            drawNode->drawLine(volumeLine->getControlPointAtIndex(i), Vec2(volumeLine->getControlPointAtIndex(i).x,cjlStartPos.y), Color4F(0.0f,1.0f,1.0f,1.0f));
+        }
     }
     
     

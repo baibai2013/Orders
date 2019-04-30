@@ -32,6 +32,7 @@ public:
     float yesterdayEndPrice;//昨天收盘价格
     float todayMaxPrice;//今日最高价
     float todayMinPrice;//今日最低价
+    float todayMaxVolume;//今日最高成交量
 };
 
 
