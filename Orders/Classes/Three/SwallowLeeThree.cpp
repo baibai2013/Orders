@@ -26,12 +26,13 @@ TimeLineModel* SwallowLeeThree::getTimeLineData(std::string todayTime){
     io::CSVReader<3> in(basePath+todayTime+".csv");
     in.read_header(io::ignore_extra_column,"time", "actualPrice","volume");
    
-    float totalPrice=0.0f,totalVolume=0.0f;
+    float totalPrice=0.0f,totalVolume=0.0f,preVolume = 0.0f;
     in.read_row(time,actualPrice,volume);
     timeLineModel->todayStartPrice = actualPrice;
     timeLineModel->todayMaxPrice = actualPrice;
     timeLineModel->todayMinPrice = actualPrice;
     timeLineModel->todayMaxVolume = volume;
+    preVolume = volume;
     
     auto timeLinePoint = new TimeLinePoint(time,actualPrice,0.0f,volume);
     totalPrice += (actualPrice*volume);
@@ -44,14 +45,14 @@ TimeLineModel* SwallowLeeThree::getTimeLineData(std::string todayTime){
     
     while (in.read_row(time,actualPrice,volume)) {
         printf("%s,%.2f,%.2f\n",time.c_str(),actualPrice,volume);
-        timeLinePoint = new TimeLinePoint(time,actualPrice,0.0f,volume);
-        totalPrice += (actualPrice*volume);
-        totalVolume += volume;
-        timeLinePoint->averagePrice = totalPrice / totalVolume;
+        timeLinePoint = new TimeLinePoint(time,actualPrice,0.0f,volume-preVolume);
+        totalPrice += (actualPrice*(volume-preVolume));
+        timeLinePoint->averagePrice = totalPrice / volume;
         timeLineModel->todayMaxPrice = std::max(timeLineModel->todayMaxPrice, actualPrice);
         timeLineModel->todayMinPrice = std::min(timeLineModel->todayMinPrice, actualPrice);
-        timeLineModel->todayMaxVolume = std::max(timeLineModel->todayMaxVolume, volume);
+        timeLineModel->todayMaxVolume = std::max(timeLineModel->todayMaxVolume, volume-preVolume);
         timeLineModel->mData.push_back(timeLinePoint);
+        preVolume = volume;
     }
     
     return timeLineModel;
